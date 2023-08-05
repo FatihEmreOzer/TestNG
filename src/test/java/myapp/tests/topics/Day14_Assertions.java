@@ -22,4 +22,16 @@ public class Day14_Assertions {
         System.out.println("line 25");
         softAssert.assertAll("Test Assertion Completed");//assertAll MUST BE USED FOR CORRECT TEST RESULT
     }
+    @Test
+    public void javaAssertion(){
+        /*
+        java assertions are hard assertions. if assert fails then STOPS
+        We should prefer to use TestNG assertions
+         */
+        System.out.println("line 35");
+        assert 3<5; // if(...) assertion TRUE then continue, otherwise throw java.lang.AssertionError
+        System.out.println("line 37");
+        assert "apple"=="apple";
+        assert "apple".toLowerCase().contains("e");
+    }
 }
