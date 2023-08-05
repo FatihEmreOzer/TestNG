@@ -9,6 +9,7 @@ public class Day13_Annotations {
     @Test(enable=false) : disables the test cases
     @Test(priority=priority number) : prioritized test cases.
     By default, TestNG runs in alphabetical order-NOT FROM TOP TO BOTTOM
+    Default priority = 0
      */
     @BeforeMethod
     public void beforeMethod(){
@@ -50,19 +51,19 @@ public class Day13_Annotations {
     public void afterSuite(){
         System.out.println("After suite...");
     }
-    @Test
+    @Test(priority = 3)
     public void test1(){
         System.out.println("Test1");
     }
-    @Test
+    @Test @Ignore//ignoring
     public void test2(){
         System.out.println("Test2");
     }
-    @Test
+    @Test(enabled = false)//disabling
     public void test3(){
         System.out.println("Test3");
     }
-    @Test
+    @Test(priority = 1)
     public void test4(){
         System.out.println("Test4");
     }
