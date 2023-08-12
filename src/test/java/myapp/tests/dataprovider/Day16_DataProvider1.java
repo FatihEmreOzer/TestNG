@@ -17,4 +17,21 @@ public class Day16_DataProvider1 {
     public void test1(String username, String password){
         System.out.println("Username : "+username+" | Password : "+password);
     }
+    //    using custom name
+    @DataProvider(name = "electricCars")
+    public Object[][] carInventory(){
+        Object[][] carList = {
+                {"tesla"},
+                {"lucid"},
+                {"nio"},
+                {"bmw"},
+                {"rivian"},
+                {"mercedes"}
+        };
+        return carList;
+    }
+    @Test(dataProvider = "electricCars")
+    public void test2(String car){
+        System.out.println(car);
+    }
 }
