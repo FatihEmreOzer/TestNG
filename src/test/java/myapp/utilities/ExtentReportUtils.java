@@ -43,8 +43,8 @@ public class ExtentReportUtils {
      **********CREATE EXTENT TEST THAT IS ALSO KNOWN AS LOGGER**
      * use this before any other report method to create test, otherwise you get exception
      */
-    public static void createTestReport(){
-        extentTest=extentReports.createTest("MY REGRESSION","MY FIRST EXTENT REPORT");
+    public static void createTestReport(String name,String description){
+        extentTest=extentReports.createTest(name,description);
     }
     //    LOGGER METHODS
 //    ExtentReportUtils.pass("message") -> Marks the log as pass , and the message shows up on the report

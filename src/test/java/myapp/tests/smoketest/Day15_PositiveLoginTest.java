@@ -3,6 +3,7 @@ import myapp.pages.RentalHomePage;
 import myapp.pages.RentalLoginPage;
 import myapp.utilities.BrowserUtils;
 import myapp.utilities.Driver;
+import myapp.utilities.ExtentReportUtils;
 import myapp.utilities.WaitUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -13,8 +14,11 @@ public class Day15_PositiveLoginTest {
 //        https://www.bluerentalcars.com/
 //        Admin email: jack@gmail.com
 //        Admin password: 12345
+        ExtentReportUtils.createTestReport("Admin Login Test" , "smoke test");
+
 //        TEST CASE:
 //        go to login page
+        ExtentReportUtils.pass("Starting test case...");
         Driver.getDriver().get("https://www.bluerentalcars.com/");
 //        click on login link
         RentalHomePage rentalHomePage = new RentalHomePage();
