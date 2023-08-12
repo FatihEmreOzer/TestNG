@@ -22,16 +22,20 @@ public class Day15_PositiveLoginTest {
         Driver.getDriver().get("https://www.bluerentalcars.com/");
 //        click on login link
         RentalHomePage rentalHomePage = new RentalHomePage();
+        ExtentReportUtils.pass("navigating to the login page");
         rentalHomePage.loginLink.click();
         WaitUtils.waitFor(2);
 //        enter email, pass, click login button
         RentalLoginPage rentalLoginPage = new RentalLoginPage();
+        ExtentReportUtils.pass("entering the admin credentials...");
         rentalLoginPage.username.sendKeys("jack1@gmail.com");
         rentalLoginPage.password.sendKeys("12345");
+        ExtentReportUtils.passAndCaptureScreenshot("Credentials entered successfully... clicking on login button");
         rentalLoginPage.loginButton.click();
         WaitUtils.waitFor(2);
 //        then verify login is successful
 //        Assert.assertTrue(rentalHomePage.userID.isDisplayed());ALTERNATIVELY
+        ExtentReportUtils.passAndCaptureScreenshot("login is successful with admin ID" + rentalHomePage.userID.getText());
         BrowserUtils.verifyElementDisplayed(rentalHomePage.userID);
 //        click on user id
         rentalHomePage.userID.click();
