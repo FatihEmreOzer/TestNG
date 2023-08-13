@@ -37,6 +37,7 @@ public class Day15_PositiveLoginTest {
 //        Assert.assertTrue(rentalHomePage.userID.isDisplayed());ALTERNATIVELY
         ExtentReportUtils.passAndCaptureScreenshot("login is successful with admin ID" + rentalHomePage.userID.getText());
         BrowserUtils.verifyElementDisplayed(rentalHomePage.userID);
+        ExtentReportUtils.pass("logging out...");
 //        click on user id
         rentalHomePage.userID.click();
         WaitUtils.waitFor(2);
@@ -46,10 +47,13 @@ public class Day15_PositiveLoginTest {
 //        click on OK
         rentalHomePage.OK.click();
         WaitUtils.waitFor(2);
+        ExtentReportUtils.passAndCaptureScreenshot("Log out successfully...");
 //        then verify logout is successful
         BrowserUtils.verifyElementDisplayed(rentalHomePage.loginLink);//OR
         BrowserUtils.verifyElementNotDisplayed(rentalHomePage.OK);
         WaitUtils.waitFor(2);
+        ExtentReportUtils.pass("Test is completed successfully...");
         Driver.closeDriver();
+    ExtentReportUtils.flush();
     }
 }
