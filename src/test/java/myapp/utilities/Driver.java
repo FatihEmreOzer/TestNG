@@ -12,47 +12,48 @@ public class Driver {
     //    creating private constructor
     private Driver(){}
     //    creating a thread safe variable. type of the variable is WebDriver.So every thread will have its own copy of the variable
-    private static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     //    getDriver method is used to access the class instance that is WebDriver.
     //    This method will return a copy of the driverThreadLocal for each thread during parallel testing
     public static WebDriver getDriver() {
-        if (driverThreadLocal.get() == null) {
+        if (driver.get() == null) {
             initializeDriver();
         }
-        return driverThreadLocal.get();
+        return driver.get();
     }
     //    Creating and instantiating the WebDriver instance
     private static void initializeDriver() {
         switch (ConfigReader.getProperty("browser")) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
-                driverThreadLocal.set(ThreadGuard.protect(new ChromeDriver()));
+                driver.set(ThreadGuard.protect(new ChromeDriver()));
                 break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
-                driverThreadLocal.set(new FirefoxDriver());
+                driver.set(new FirefoxDriver());
                 break;
             case "chrome-headless":
                 WebDriverManager.chromedriver().setup();
-                driverThreadLocal.set(ThreadGuard.protect(new ChromeDriver(new ChromeOptions().setHeadless(true))));
+                driver.set(ThreadGuard.protect(new ChromeDriver(new ChromeOptions().setHeadless(true))));
                 break;
             case "edge":
                 WebDriverManager.edgedriver().setup();
-                driverThreadLocal.set(ThreadGuard.protect(new EdgeDriver()));
+                driver.set(ThreadGuard.protect(new EdgeDriver()));
                 break;
             case "safari":
                 WebDriverManager.safaridriver().setup();
-                driverThreadLocal.set(ThreadGuard.protect(new SafariDriver()));
+                driver.set(ThreadGuard.protect(new SafariDriver()));
                 break;
         }
+        //driver -> getDriver()
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         getDriver().manage().window().maximize();
     }
     //    if driver is pointing any object such as chrome or edge, then quit
     public static void closeDriver() {
-        if (driverThreadLocal.get() != null) {
-            driverThreadLocal.get().quit();
-            driverThreadLocal.remove();
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove();
         }
     }
 }
